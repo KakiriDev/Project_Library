@@ -12,7 +12,7 @@ public class Main {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("databasePersistence");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        
+
         entityManager.close();
         entityManagerFactory.close();
     }
