@@ -10,7 +10,7 @@
             <property name="javax.persistence.jdbc.password" value="3jjrWSjKWk"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://sql7.freesqldatabase.com:3306/sql7237192"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
-            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
         </properties>
 
     </persistence-unit>
