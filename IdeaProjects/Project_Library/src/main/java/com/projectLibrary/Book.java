@@ -1,26 +1,44 @@
 package com.projectLibrary;
 
-import java.sql.Date;
+import javax.persistence.*;
+import java.util.Date;
 
+@Entity
+@Table(name = "Library")  //add annotation to change table name
 public class Book {
-    long id;
-    String title;
-    String author;
-    int dateOfPublication;
-    int ISBN;
-    String cover;       //format???
-    boolean status;
-    String nameOfCustomer;
-    Date dateOfReturn;      //format???
 
-    public Book(long id, String title, String author, int dateOfPublication, int ISBN, String cover, boolean status, String nameOfCustomer, Date dateOfReturn) {
+    @Id
+    @GeneratedValue //auto create ID
+            long id;
+    // @Transient -- add annotation if u want ignore field, hibernate dont create this column
+    @Column(name = "BookTitle") //add annotation to change column name, annotation have more parameters eg.
+            // nullable = false -- field can not be null
+            // length = 10 -- max length is 10 chars
+            // columnDefinition = "VARCHAR(10) NOT NULL" -- u can put part of SQL instruction
+            // precision = 10 -- max numbers length eg. 1234567890 (eg. for BigDecimal type)
+            // scale = 2 -- max decimal precision eg. 17.25 (eg. for BigDecimal type)
+    private String title;
+    private String author;
+    private int yearOfPublication;
+    private String ISBN;
+    private String cover;       //format???
+    private boolean available;
+    private String nameOfCustomer;
+
+    @Temporal(TemporalType.DATE)   // you can set type: date/time/timestamp
+    private java.util.Date dateOfReturn;
+
+    public Book(){
+
+    }
+    public Book(long id, String title, String author, int dateOfPublication, String ISBN, String cover, boolean available, String nameOfCustomer, Date dateOfReturn) {
         this.id = id;
         this.title = title;
         this.author = author;
-        this.dateOfPublication = dateOfPublication;
+        this.yearOfPublication = dateOfPublication;
         this.ISBN = ISBN;
         this.cover = cover;
-        this.status = status;
+        this.available = available;
         this.nameOfCustomer = nameOfCustomer;
         this.dateOfReturn = dateOfReturn;
     }
@@ -49,19 +67,19 @@ public class Book {
         this.author = author;
     }
 
-    public int getDateOfPublication() {
-        return dateOfPublication;
+    public int getYearOfPublication() {
+        return yearOfPublication;
     }
 
-    public void setDateOfPublication(int dateOfPublication) {
-        this.dateOfPublication = dateOfPublication;
+    public void setYearOfPublication(int yearOfPublication) {
+        this.yearOfPublication = yearOfPublication;
     }
 
-    public int getISBN() {
+    public String getISBN() {
         return ISBN;
     }
 
-    public void setISBN(int ISBN) {
+    public void setISBN(String ISBN) {
         this.ISBN = ISBN;
     }
 
@@ -73,12 +91,12 @@ public class Book {
         this.cover = cover;
     }
 
-    public boolean isStatus() {
-        return status;
+    public boolean isAvailable() {
+        return available;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 
     public String getNameOfCustomer() {
